@@ -52,7 +52,7 @@
   <h1>Smithsonian Image Search</h1>
   <input type="text" id="queryInput" placeholder="Enter search query..." />
   <select id="modelSelect">
-    <option value="clip">CLIP</option>
+    <option value="clip" selected>CLIP</option>
     <option value="bioclip">BioCLIP</option>
   </select>
   <button id="searchButton">Search</button>
@@ -83,8 +83,7 @@
 
         const results = await response.json();
         const urls = results.map(result => {
-          const s3Path = result.entity.s3_path;
-          return "https://smithsonian-open-access.s3.amazonaws.com/" + s3Path.split("s3://smithsonian-open-access/")[1];
+          return result.entity.image_url
         });
 
         urls.forEach(url => {
